@@ -6,7 +6,7 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 15:45:50 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/14 15:45:51 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/16 11:57:07 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,43 @@ int ft_printf(const char *s, ...)
         {
             i++;
             if (s[i] == 'c')
-                ft_printf_char();
+            {
+                char c = va_arg(args, char);
+                taille += ft_printf_char(c);
+            }
             else if (s[i] == 's')
-                ft_printf_str();
+            {
+                char    *str = va_arg(args, char *);
+                taille += ft_printf_str(str);
+            }
             else if (s[i] == 'i' || s[i] == 'd')
-                ft_printf_int();
+            {
+                int n = va_arg(args, int);
+                taille += ft_printf_int(n);
+            }
             else if (s[i] == 'p')
-                ft_printf_adress();
+            {
+                void    *ptr = va_arg(args, void *);
+                uintptr_t   adress = (uintptr_t)ptr;
+                taille += ft_printf_hex(adress, "0123456789abcedf");
+            }
             else if (s[i] == 'x')
-                ft_printf_hex();
+            {
+                unsigned int    n = va_arg(args, unsigned int);
+                taille += ft_printf_hex(n, "0123456789abcdef");
+            }
             else if (s[i] == 'X')
-                ft_printf_hex(); // base 0123456789ABCDEF
+            {
+                unsigned int    n = va_arg(args, unsigned int);
+                taille += ft_printf_hex(n, "0123456789ABCDEF");
+            }
+            else if (s[i] == '%')
+            {
+                write(1, '%', 1);
+                taille++;
+            }
         }
         i++;
     }
+    return (taille);
 }
