@@ -6,7 +6,7 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 15:46:07 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/14 15:46:23 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/16 12:24:14 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 #include <stdarg.h>
+#include <stdint.h>
+#include <unistd.h>
 
 int ft_printf(const char *, ...);
 

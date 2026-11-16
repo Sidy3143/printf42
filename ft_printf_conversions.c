@@ -6,16 +6,61 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 11:52:51 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/16 11:57:36 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:35:21 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_char(char c);
+int ft_strlen(char *str)
+{
+    int i;
 
-int ft_printf_str(char *str);
+    i = 0;
+    while(str[i])
+        i++;
+    return (i);
+}
 
-int ft_printf_int(int n);
+int ft_printf_char(char c)
+{
+    write(1, &c, 1);
+    return (1);
+}
+
+int ft_printf_str(char *str)
+{
+    write(1, str, ft_strlen(str));
+    return (ft_strlen(str));
+}
+
+int ft_printf_int(int n)
+{
+    int taille;
+    int base;
+
+    taille = 0;
+    base = 1;
+    if (n == -2147483648)
+	{
+        taille = ft_printf_str("-2147483648");
+		return (taille);
+	}
+	if (n < 0)
+	{
+		taille += ft_printf_char('-');
+		n = -n;
+	}
+    if (n > 9)
+		taille += ft_printf_int(n / 10);
+	taille += ft_printf_char((n % 10) + '0');
+    return (taille);
+}
 
 int ft_printf_hex(uintptr_t n);
+
+int main(void)
+{
+    int taille = ft_printf_int(-4245);
+    printf("\ntaille: %d\n", taille);
+}
