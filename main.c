@@ -2,6 +2,9 @@
 
 int main(void)
 {
-    ft_printf("Hello %s!\n", "Sidy");
+    int taille;
+
+    taille = ft_printf("i'm just printing %%.\n");
+    ft_printf("Taille: %i\n", taille);
     return (0);
 }

@@ -75,6 +75,21 @@ int ft_printf(const char *s, ...)
 /*
 int main(void)
 {
-    int taille = ft_printf("On est en : %d\n", 2026);
-    printf("taille: %d\n", taille);
+    int taille;
+    int *ptr;
+    
+    ptr = &taille;
+    taille = ft_printf("Hello, I am %s.\n", "Sidy");
+    ft_printf("---Taille: %d---\n", taille);
+
+    taille = ft_printf("Adress of taille is %p.\n", "Sidy", ptr);
+    ft_printf("---Taille: %d---\n", taille);
+
+    taille = ft_printf("taille is %p.\n", "Sidy", ptr);
+    ft_printf("---Taille: %d\n---", taille);
+
+    taille = ft_printf("%d in hexadecimal is %x.\n", 42, 42);
+    printf("---Taille: %d\n---", taille);
+
+    return(0);
 }*/

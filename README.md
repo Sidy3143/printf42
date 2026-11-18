@@ -2,13 +2,13 @@
 
 *This activity has been created as part of the 42 curriculum by sindiaye.*
 
-# Project Name
+# PRINTF Library Project
 
 ## Description
 
-**Project Name** is a project developed as part of the 42 curriculum.
+**Printf** is a project developed as part of the 42 curriculum.
 
-The goal of this project is to [describe the main objective of the project].
+The goal of this project is to implement the printf function in C from scratch.
 
 This project focuses on:
 - [Main concept or functionality]

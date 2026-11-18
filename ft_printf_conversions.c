@@ -37,10 +37,8 @@ int ft_printf_str(char *str)
 int ft_printf_int(int n)
 {
     int taille;
-    int base;
 
     taille = 0;
-    base = 1;
     if (n == -2147483648)
 	{
         taille = ft_printf_str("-2147483648");
@@ -62,11 +60,6 @@ static int ft_printf_hex_recursive(uintptr_t n, char *base)
     int taille;
 
     taille = 0;
-    if (n < 0)
-	{
-		taille += ft_putchar('-');
-		n = -n;
-	}
     if (n > 15)
 		taille += ft_printf_hex_recursive(n / 16, base);
 	taille += ft_putchar(base[n % 16]);
