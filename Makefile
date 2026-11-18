@@ -1,11 +1,11 @@
-NAME = ft_printf
+NAME = libftprint.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 INCLUDES = -I .
 
-SRC = ft_printf.c
+SRC = ft_printf.c ft_printf_conversions.c
 
 OBJ = $(SRC:.c=.o)
 

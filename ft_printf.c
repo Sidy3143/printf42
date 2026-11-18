@@ -6,16 +6,11 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 15:45:50 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/16 11:57:07 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/18 21:30:17 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void    ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
 
 int ft_printf(const char *s, ...)
 {
@@ -38,8 +33,8 @@ int ft_printf(const char *s, ...)
             i++;
             if (s[i] == 'c')
             {
-                char c = va_arg(args, char);
-                taille += ft_printf_char(c);
+                char c = va_arg(args, int);
+                taille += ft_putchar(c);
             }
             else if (s[i] == 's')
             {
@@ -69,7 +64,7 @@ int ft_printf(const char *s, ...)
             }
             else if (s[i] == '%')
             {
-                write(1, '%', 1);
+                write(1, "%", 1);
                 taille++;
             }
         }
@@ -77,3 +72,9 @@ int ft_printf(const char *s, ...)
     }
     return (taille);
 }
+/*
+int main(void)
+{
+    int taille = ft_printf("On est en : %d\n", 2026);
+    printf("taille: %d\n", taille);
+}*/

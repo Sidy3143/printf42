@@ -6,7 +6,7 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 11:52:51 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/18 20:18:38 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/18 21:16:55 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int ft_strlen(char *str)
     return (i);
 }
 
-int ft_printf_char(char c)
+int ft_putchar(char c)
 {
     write(1, &c, 1);
     return (1);
@@ -48,28 +48,28 @@ int ft_printf_int(int n)
 	}
 	if (n < 0)
 	{
-		taille += ft_printf_char('-');
+		taille += ft_putchar('-');
 		n = -n;
 	}
     if (n > 9)
 		taille += ft_printf_int(n / 10);
-	taille += ft_printf_char((n % 10) + '0');
+	taille += ft_putchar((n % 10) + '0');
     return (taille);
 }
 
-int ft_printf_hex_recursive(uintptr_t n, char *base)
+static int ft_printf_hex_recursive(uintptr_t n, char *base)
 {
     int taille;
 
     taille = 0;
     if (n < 0)
 	{
-		taille += ft_printf_char('-');
+		taille += ft_putchar('-');
 		n = -n;
 	}
     if (n > 15)
 		taille += ft_printf_hex_recursive(n / 16, base);
-	taille += ft_printf_char(base[n % 16]);
+	taille += ft_putchar(base[n % 16]);
     return (taille);
 }
 
@@ -81,9 +81,9 @@ int ft_printf_hex(uintptr_t n, char *base)
     taille += ft_printf_hex_recursive(n, base);
     return (taille);
 }
-
+/*
 int main(void)
 {
     int taille = ft_printf_hex(423, "0123456789abcdef");
     printf("\ntaille: %d\n", taille);
-}
+}*/
