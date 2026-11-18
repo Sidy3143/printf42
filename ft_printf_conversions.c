@@ -6,7 +6,7 @@
 /*   By: sindiaye <sindiaye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 11:52:51 by sindiaye          #+#    #+#             */
-/*   Updated: 2026/11/16 13:35:21 by sindiaye         ###   ########.fr       */
+/*   Updated: 2026/11/18 20:18:38 by sindiaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,33 @@ int ft_printf_int(int n)
     return (taille);
 }
 
-int ft_printf_hex(uintptr_t n);
+int ft_printf_hex_recursive(uintptr_t n, char *base)
+{
+    int taille;
+
+    taille = 0;
+    if (n < 0)
+	{
+		taille += ft_printf_char('-');
+		n = -n;
+	}
+    if (n > 15)
+		taille += ft_printf_hex_recursive(n / 16, base);
+	taille += ft_printf_char(base[n % 16]);
+    return (taille);
+}
+
+int ft_printf_hex(uintptr_t n, char *base)
+{
+    int taille;
+
+    taille = write(1, "0x", 2);
+    taille += ft_printf_hex_recursive(n, base);
+    return (taille);
+}
 
 int main(void)
 {
-    int taille = ft_printf_int(-4245);
+    int taille = ft_printf_hex(423, "0123456789abcdef");
     printf("\ntaille: %d\n", taille);
 }
