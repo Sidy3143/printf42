@@ -20,7 +20,9 @@
 
 int ft_printf(const char *, ...);
 int ft_printf_hex(uintptr_t n, char *base);
+int ft_printf_hex_adress(uintptr_t n, char *base);
 int ft_printf_int(int n);
+int ft_printf_unsigned_int(unsigned int n);
 int ft_printf_str(char *str);
 int ft_putchar(char c);
 

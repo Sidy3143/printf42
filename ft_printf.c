@@ -18,6 +18,8 @@ int ft_printf(const char *s, ...)
     int taille;
     va_list args;
 
+    if (!s)
+        return (-1);
     va_start(args, s);
     i = 0;
     taille = 0;
@@ -28,7 +30,7 @@ int ft_printf(const char *s, ...)
             write(1, &s[i], 1);
             taille++;
         }
-        else
+        else if s[i + 1]
         {
             i++;
             if (s[i] == 'c')
@@ -39,18 +41,31 @@ int ft_printf(const char *s, ...)
             else if (s[i] == 's')
             {
                 char    *str = va_arg(args, char *);
-                taille += ft_printf_str(str);
+                if (!str)
+                    taille += ft_printf_str("(null)");
+                else
+                    taille += ft_printf_str(str);
             }
             else if (s[i] == 'i' || s[i] == 'd')
             {
                 int n = va_arg(args, int);
                 taille += ft_printf_int(n);
             }
+            else if (s[i] == 'u')
+            {
+                unsigned int n = va_arg(args, unsigned int);
+                taille += ft_printf_unsigned_int(n);
+            }
             else if (s[i] == 'p')
             {
                 void    *ptr = va_arg(args, void *);
-                uintptr_t   adress = (uintptr_t)ptr;
-                taille += ft_printf_hex(adress, "0123456789abcedf");
+                if (!ptr)
+                    taille += ft_printf_str("(nil)");
+                else
+                {
+                    uintptr_t   adress = (uintptr_t)ptr;
+                    taille += ft_printf_hex_adress(adress, "0123456789abcdef");
+                }
             }
             else if (s[i] == 'x')
             {

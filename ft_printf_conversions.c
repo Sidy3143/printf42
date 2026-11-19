@@ -24,14 +24,12 @@ int ft_strlen(char *str)
 
 int ft_putchar(char c)
 {
-    write(1, &c, 1);
-    return (1);
+    return (write(1, &c, 1));
 }
 
 int ft_printf_str(char *str)
 {
-    write(1, str, ft_strlen(str));
-    return (ft_strlen(str));
+    return (write(1, str, ft_strlen(str)));
 }
 
 int ft_printf_int(int n)
@@ -55,18 +53,36 @@ int ft_printf_int(int n)
     return (taille);
 }
 
+int ft_printf_unsigned_int(unsigned int n)
+{
+    int taille;
+
+    taille = 0;
+    if (n > 9)
+		taille += ft_printf_unsigned_int(n / 10);
+	taille += ft_putchar((n % 10) + '0');
+    return (taille);
+}
+
 static int ft_printf_hex_recursive(uintptr_t n, char *base)
 {
     int taille;
 
     taille = 0;
     if (n > 15)
-		taille += ft_printf_hex_recursive(n / 16, base);
+    {
+        taille += ft_printf_hex_recursive(n / 16, base);
+    }
 	taille += ft_putchar(base[n % 16]);
     return (taille);
 }
 
 int ft_printf_hex(uintptr_t n, char *base)
+{
+    return (ft_printf_hex_recursive(n, base));
+}
+
+int ft_printf_hex_adress(uintptr_t n, char *base)
 {
     int taille;
 
@@ -74,6 +90,7 @@ int ft_printf_hex(uintptr_t n, char *base)
     taille += ft_printf_hex_recursive(n, base);
     return (taille);
 }
+
 /*
 int main(void)
 {
