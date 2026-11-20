@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <unistd.h>
 
-int	ft_printf(const char *, ...);
+int	ft_printf(const char *format, ...);
 int	ft_printf_hex(uintptr_t n, char *base);
 int	ft_printf_hex_adress(uintptr_t n, char *base);
 int	ft_printf_int(int n);

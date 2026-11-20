@@ -76,28 +76,28 @@ int	ft_print_type(char c, va_list args)
 	return (taille);
 }
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		taille;
 	va_list	args;
 
-	if (!s)
+	if (!format)
 		return (-1);
-	va_start(args, s);
+	va_start(args, format);
 	i = 0;
 	taille = 0;
-	while (s[i])
+	while (format[i])
 	{
-		if (s[i] != '%')
+		if (format[i] != '%')
 		{
-			write(1, &s[i], 1);
+			write(1, &format[i], 1);
 			taille++;
 		}
-		else if (s[i + 1])
+		else if (format[i + 1])
 		{
 			i++;
-			taille += ft_print_type(s[i], args);
+			taille += ft_print_type(format[i], args);
 		}
 		i++;
 	}
