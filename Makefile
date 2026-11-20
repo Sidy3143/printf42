@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 INCLUDES = -I .
 
-SRC = ft_printf.c ft_printf_conversions.c
+SRC = ft_printf.c ft_printf_conv1.c ft_printf_conv2.c
 
 OBJ = $(SRC:.c=.o)
 
